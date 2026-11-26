@@ -1,0 +1,65 @@
+# JKT48 Auto 2-Shot & Instant Cookie Sync
+
+Ekstensi browser (Chrome, Edge, Brave, dan browser berbasis Chromium lainnya) untuk menyinkronkan cookie *Waiting Room* (`__cfwaitingroom` & `cf_clearance`) secara instan antar-browser dalam 1 klik, sekaligus mengotomatisasi proses antrean pembelian 2-Shot JKT48.
+
+## Persiapan Awal
+
+### 1. Instal Node.js (Wajib untuk Fitur Sync Cookie)
+Pastikan **Node.js** sudah terinstal di PC/Laptop. Untuk mengeceknya, buka Terminal / CMD lalu ketik:
+
+node -v
+
+*(Jika belum terinstal, unduh versi LTS di https://nodejs.org).*
+
+### 2. Pasang Ekstensi ke Browser (Chrome / Edge / Brave)
+1. Buka halaman ekstensi di browser:
+   - **Google Chrome:** ketik `chrome://extensions` di address bar.
+   - **Microsoft Edge:** ketik `edge://extensions` di address bar.
+2. Aktifkan **Developer mode** (Mode pengembang) di pojok kanan atas/kiri.
+3. Klik tombol **Load unpacked** (Muat ekstensi yang belum dibuka), lalu pilih folder **`warjkt48`**.
+4. *(Opsional - Jika memakai jendela Incognito / InPrivate)*: Klik **Details** pada kartu ekstensi, lalu aktifkan opsi **Allow in Incognito** / **Allow in InPrivate**.
+5. Ulangi langkah ini di setiap browser lain yang ingin digunakan.
+
+---
+
+## Cara Menggunakan
+
+### Langkah 1: Jalankan Server Sinkronisasi
+1. Buka Terminal / CMD di dalam folder **`warjkt48`**.
+2. Jalankan perintah:
+   
+   node server.js
+ 
+3. Biarkan jendela terminal ini tetap terbuka selama proses *war* berlangsung.
+
+### Langkah 2: Atur Target Member di Tiap Browser
+1. Buka situs `https://jkt48.com` dan **Login** ke akun masing-masing di setiap browser/jendela.
+2. Klik ikon ekstensi **Auto Cookie Broadcast & Sync + JKT48 Auto** di pojok kanan atas browser.
+3. Pada kolom **Target Member Browser Ini**, isi daftar target dengan format 1 baris per member:
+   
+   Tanggal | Sesi | Nama Member | Jumlah
+   
+   **Contoh:**
+  
+   Senin, 23 November 2026 | Sesi 2 (18:00 WIB) | Fahira Putri | 1
+   Selasa, 24 November 2026 | Sesi 3 (19:30 WIB) | Bong Aprilli | 1
+   
+   *(Catatan: Penulisan Tanggal, Sesi, dan Nama Member harus sama persis dengan yang tertera di web JKT48).*
+4. Pilih metode pembayaran (**JKT48 Point** atau **Bonus Point**), lalu klik **Simpan Target Browser Ini**.
+5. Ulangi pengaturan target di browser lain jika ingin tiap browser membeli member yang berbeda.
+
+### Langkah 3: Eksekusi & Sync Waiting Room
+1. **Saat Masih di Waiting Room:** Skrip otomatis masuk mode *Standby* (status biru di pojok kanan bawah) dan tidak mengganggu antrean.
+2. **Saat Salah Satu Browser Tembus Waiting Room:**
+   - Buka popup ekstensi di browser yang sudah tembus tersebut.
+   - Klik tombol biru **Kirim Cookie Otomatis dari Tab Ini** *(atau tempel value cookie di kotak manual lalu klik tombol hijau)*.
+   - Seluruh browser lain yang terhubung akan otomatis menerima cookie tersebut, me-*reload* halaman bersamaan, dan langsung menjalankan pembelian sesuai target masing-masing.
+3. **Jika Mengedit File `config.js`:**
+   - Simpan perubahan di `config.js` (`Ctrl + S`).
+   - Klik tombol **Reload** pada kartu ekstensi di `chrome://extensions` / `edge://extensions`.
+   - Untuk mereset target di popup agar mengikuti `config.js` terbaru, kosongkan isi kotak teks di popup lalu klik **Simpan Target Browser Ini**.
+
+---
+
+## Catatan Penting
+- **Sesi Login Tetap Aman:** Fitur *Cookie Sync* hanya menyalin cookie *Waiting Room* (`__cfwaitingroom` & `cf_clearance`), sehingga akun yang sudah login di masing-masing browser tidak akan tertimpa.

@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Cookie WAR JKT48",
+  "version": "2.3",
+  "description": "Auto Sync Cookie & Auto Checkout JKT48 — Created by TIDAK_BERUBAH",
+  "author": "TIDAK_BERUBAH",
+  "permissions": ["cookies", "tabs", "storage", "alarms", "clipboardWrite"],
+  "host_permissions": ["<all_urls>", "http://127.0.0.1:3456/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://jkt48.com/*"],
+      "js": ["config.js","content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

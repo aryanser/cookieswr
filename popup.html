@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 280px; padding: 12px; font-family: system-ui, sans-serif; margin: 0; font-size: 12px; }
+    button {
+      width: 100%; padding: 8px; background: #1a73e8; color: white;
+      border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px;
+    }
+    button:hover { background: #1557b0; }
+    button.secondary { background: #188038; margin-top: 4px; }
+    button.secondary:hover { background: #13692d; }
+    button.dark { background: #333; margin-top: 4px; }
+    button.dark:hover { background: #111; }
+    button.copy { background: #5f6368; margin-bottom: 6px; }
+    button.copy:hover { background: #3c4043; }
+    button.copy.copied { background: #188038; }
+    hr { border: none; border-top: 1px solid #e0e0e0; margin: 10px 0; }
+    label.field-label { display: block; font-weight: 700; margin-bottom: 4px; color: #222; }
+    select, input[type="text"], textarea {
+      width: 100%; box-sizing: border-box; padding: 6px;
+      border: 1px solid #ccc; border-radius: 5px; margin-bottom: 6px; font-size: 11px; font-family: inherit;
+    }
+    textarea { height: 75px; resize: vertical; line-height: 1.35; }
+    input[readonly] { background: #f1f3f4; color: #202124; cursor: default; }
+    .hint { font-size: 10px; color: #666; margin-top: -4px; margin-bottom: 6px; }
+    .toggle { margin-top: 8px; display: flex; align-items: center; gap: 6px; }
+    #status { margin-top: 6px; font-size: 11px; color: #188038; font-weight: 600; min-height: 14px; }
+  </style>
+</head>
+<body>
+  <button id="broadcastBtn">Kirim Cookie Otomatis dari Tab Ini</button>
+  <button id="broadcastUrlBtn" style="background:#d93025; margin-top:5px;">Buka URL Tab Ini di Semua Browser</button>
+  <hr>
+
+  <label class="field-label">Input Manual Value Cookie:</label>
+  <select id="cookieNameSelect">
+    <option value="__cfwaitingroom">__cfwaitingroom</option>
+    <option value="cf_clearance">cf_clearance</option>
+    <option value="cbcd">cbcd (Tes)</option>
+  </select>
+
+  <label class="field-label">Value Cookie Otomatis (dari browser):</label>
+  <input type="text" id="autoCookieValue" readonly placeholder="Otomatis terisi dari cookie browser...">
+
+  <button id="copyCookieBtn" class="copy">Copy Value Cookie dari Tab Ini</button>
+  <div class="hint">Ambil otomatis value cookie dari tab JKT48 yang aktif — tanpa buka Inspect / DevTools.</div>
+  <input type="text" id="manualValueInput" placeholder="Tempel (Paste) value cookie di sini...">
+  <button id="manualSendBtn" class="secondary">Kirim Value Manual ke Semua</button>
+
+  <label class="toggle">
+    <input type="checkbox" id="autoToggle" checked>
+    Auto-Terima Cookie & Reload
+  </label>
+
+  <label class="toggle">
+    <input type="checkbox" id="autoSendToggle" checked>
+    Auto-Kirim Cookie saat Popup Dibuka
+  </label>
+
+  <hr>
+
+  <label class="field-label">Target Member Browser Ini:</label>
+  <textarea id="queueInput" placeholder="Senin, 23 November 2026 | Sesi 4 (17:00 WIB) | Gita Sekar Andarini | 1"></textarea>
+  <div class="hint">Format 1 baris per member: Tanggal | Sesi | Nama Member | Qty</div>
+
+  <select id="paymentSelect">
+    <option value="JKT48 Point">JKT48 Point</option>
+    <option value="Bonus Point">Bonus Point</option>
+  </select>
+
+  <button id="saveQueueBtn" class="dark">Simpan Target Browser Ini</button>
+
+  <div id="status"></div>
+  <div style="margin-top: 10px; padding-top: 6px; border-top: 1px dashed #ddd; text-align: center; font-size: 10px; color: #777;">
+    Created by <strong>tidak_berubah</strong>
+  </div>
+  <script src="config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
